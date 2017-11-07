@@ -2,7 +2,7 @@ ROOT_DIR       := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 VARIABLES_FILE  = $(ROOT_DIR)/variables.env
 PHALCON_VERSION = $(shell docker run -it --rm phalconphp/php-apache:ubuntu-16.04 sh -c "/usr/bin/php -r 'echo Phalcon\Version::get();'")
 SHELL          := $(shell which bash)
-VERSION         = 2.3.0
+VERSION         = 1.0
 ARGS            = $(filter-out $@,$(MAKECMDGOALS))
 
 .SILENT: ;               # no need for @
@@ -13,21 +13,23 @@ default: help-default;   # default target
 Makefile: ;              # skip prerequisite discovery
 
 .title:
-	$(info Phalcon Compose: $(VERSION))
+	$(info Spreadshare Compose: $(VERSION))
 	$(info )
 
 help-default help: .title
 	@echo "                          ====================================================================="
-	@echo "                          Help & Check Menu"
+	@echo "                          Spreadshare Docker Image"
+	@echo "                          "
+	@echo "                          Help Menu"
 	@echo "                          ====================================================================="
-	@echo "                    help: Show Phalcon Compose Help Menu: type: make help"
+	@echo "                    help: Show Help Menu: type: make help"
 	@echo "                   check: Check required files"
 	@echo "                  status: List containers status"
 	@echo "                 version: Show versions"
 	@echo "                          ====================================================================="
 	@echo "                          Main Menu"
 	@echo "                          ====================================================================="
-	@echo "                      up: Create and start application in detached mode (in the background)"
+	@echo "                      up: Create and start application in detached mode (background)"
 	@echo "                    pull: Pull latest dependencies"
 	@echo "                    stop: Stop application"
 	@echo "                   root:  Login to the 'app' container as 'root' user"
@@ -43,12 +45,10 @@ build: check
 
 pull:
 	docker pull mongo:3.2
-	docker pull postgres:9.5
 	docker pull mysql:5.7
-	docker pull memcached:1.4
-	docker pull aerospike:latest
-	docker pull redis:latest
-	docker pull elasticsearch:2.3
+	docker pull memcached:1.5.2
+	docker pull redis:4.0
+	docker pull elasticsearch:5
 	docker pull jeroenpeeters/docker-ssh:latest
 	docker pull phalconphp/beanstalkd:1.10
 	docker pull phalconphp/php-apache:ubuntu-16.04

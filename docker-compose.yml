@@ -1,53 +1,62 @@
 version: '2'
 
 services:
-#  mongo:
+#  mongo1:
 #    restart: always
 #    image: mongo:3.4
+#    hostname: mongo1
 #    expose:
 #      - "27017"
 #    ports:
 #      - "27017:27017"
 #    volumes:
-#      - mongo:/data/db
+#      - mongo1:/data/db
 
-  mysql:
+  mysql1:
+    container_name: spreadshare-mysql1
+    build: docker/mysql
     restart: always
-    image: mysql:5.7
+    hostname: mysql1
     expose:
       - "3306"
     ports:
       - "3307:3306"
     volumes:
-      - ./data/mysql:/docker-entrypoint-initdb.d
-      - mysql:/var/lib/mysql
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+      - ./application/schemas/mysql.sql:/docker-entrypoint-initdb.d/init.sql
     env_file:
         - variables.env
 
   memcached:
+    container_name: spreadshare-memcached1
     restart: always
-    image: memcached:1.4-alpine
+    hostname: memcached
+    image: memcached:1.5.2
     ports:
       - "11211:11211"
 
-  queue:
-    restart: always
-    image: phalconphp/beanstalkd:1.10
-    ports:
-      - "11300:11300"
-    volumes:
-      - beanstalk:/var/lib/beanstalkd
+  #queue:
+  #  container_name: spreadshare-queue1
+  #  restart: always
+  #  image: phalconphp/beanstalkd:1.10
+  #  ports:
+  #    - "11300:11300"
+  #  volumes:
+  #    - beanstalk:/var/lib/beanstalkd
 
   redis:
+    container_name: spreadshare-redis1
     restart: always
-    image: redis:3.2-alpine
+    hostname: redis
+    image: redis:4.0
     ports:
       - "6379:6379"
     volumes:
       - redis:/data
 
 #  elasticsearch:
-#    image: elasticsearch:5.2-alpine
+#    image: elasticsearch:5
 #    restart: always
 #    expose:
 #      - "9200"
@@ -62,7 +71,9 @@ services:
 
   app:
     build: docker/app
+    container_name: spreadshare-backend1
     restart: always
+    hostname: spreadshare
     working_dir: /project
     ports:
       - "81:80"
@@ -74,24 +85,24 @@ services:
     links:
       - "redis:redis"
       - "memcached:memcached"
-#      - "mongo:mongo"
+#      - "mongo1:mongo1"
 #      - "elasticsearch:elasticsearch"
     depends_on:
-      - mysql
-      - queue
+      - mysql1
       - redis
       - memcached
-#      - elasticsearch
+#      - queue1
+#      - elasticsearch1
     env_file:
       - variables.env
 
 volumes:
-#  mongo:
+#  mongo1:
 #    driver: local
   mysql:
     driver: local
-  beanstalk:
-    driver: local
+  #beanstalk:
+  #  driver: local
   redis:
     driver: local
 #  esdata:
