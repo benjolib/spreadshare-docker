@@ -41,3 +41,13 @@ $ docker-compose up -d
 Open https://spreadshare.docker:444
 
 We are using 444 here as the port to not interfere with any other locally running webserver.
+
+
+### Additional info
+
+Use 
+````
+$ docker-compose build --no-cache
+````
+
+to re-build the environment.
