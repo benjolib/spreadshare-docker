@@ -11,14 +11,6 @@ Clone this repository recursively. There is a submodule with the spreadshare cod
 $ git clone --recursive git@bitbucket.org:spreadshare/spreadshare-docker.git
 ````
 
-Install composer (php dependency/package manager): https://getcomposer.org/download/
-
-Then do:
-````
-$ cd application/
-$ composer install
-````
-
 ### Configuration
 
 Add spreadshare.docker in your /etc/hosts file as follows:
