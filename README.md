@@ -19,6 +19,7 @@ $ 127.0.0.1 spreadshare.docker
 ````
 
 ### Create and build all containers
+From within the spreadshare-docker root directory, execute the following:
 ````
 $ docker-compose build
 ````
@@ -30,9 +31,9 @@ $ docker-compose up -d
 
 ### Run
 
-Open https://spreadshare.docker:444
+Open http://spreadshare.docker:81 or https://spreadshare.docker:444
 
-We are using 444 here as the port to not interfere with any other locally running webserver.
+We are using ports 81 and 444 to not interfere with any other locally running webserver.
 
 
 ### Additional info
