@@ -33,6 +33,12 @@ RUN mkdir -p /vendor \
     && chmod ugo+x /usr/local/bin/phalcon \
     && chmod +x /opt/docker/provision/entrypoint.d/*.sh
 
+RUN mkdir -p  /etc/apache2/spreadshare
+
+ RUN echo "" >> /etc/apache2/apache2.conf \
+    && echo "# Include spreadshare configurations from host machine" >> /etc/apache2/apache2.conf \
+    && echo "IncludeOptional spreadshare/*.conf" >> /etc/apache2/apache2.conf
+
 RUN apt-get autoremove -y \
     && apt-get autoclean -y \
     && apt-get clean -y
