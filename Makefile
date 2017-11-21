@@ -41,9 +41,7 @@ help-default help: .title
 	@echo ""
 
 build: check
-	mv docker/mysql/data/.gitkeep docker/mysql/data/.tmpgitkeep
 	docker-compose build --no-cache
-	mv docker/mysql/data/.tmpgitkeep docker/mysql/data/.gitkeep
 
 pull:
 	docker pull mongo:3.2
