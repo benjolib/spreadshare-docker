@@ -6,7 +6,7 @@ VERSION         = 1.0
 ARGS            = $(filter-out $@,$(MAKECMDGOALS))
 
 .SILENT: ;               # no need for @
-.ONESHELL: ;             # recipes execute in same shell
+.ONESHELL: ;             # recipes executed in same shell
 .NOTPARALLEL: ;          # wait for this target to finish
 .EXPORT_ALL_VARIABLES: ; # send all vars to shell
 default: help-default;   # default target
@@ -41,7 +41,9 @@ help-default help: .title
 	@echo ""
 
 build: check
+	mv docker/mysql/data/.gitkeep docker/mysql/data/.tmpgitkeep
 	docker-compose build --no-cache
+	mv docker/mysql/data/.tmpgitkeep docker/mysql/data/.gitkeep
 
 pull:
 	docker pull mongo:3.2
