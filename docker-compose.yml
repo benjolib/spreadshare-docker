@@ -26,10 +26,6 @@ services:
       - ./application/schemas/mysql.sql:/docker-entrypoint-initdb.d/init.sql
     env_file:
         - variables.env
-    mem_limit: 4200000000
-    cpu_count: 2
-    cpu_percent: 50
-    cpus: 0.5
 
   memcached:
     container_name: spreadshare-memcached1
@@ -38,10 +34,6 @@ services:
     image: memcached:1.5.2
     ports:
       - "11211:11211"
-    mem_limit: 500000000
-    cpu_count: 1
-    cpu_percent: 10
-    cpus: 0.5
 
   #queue:
   #  container_name: spreadshare-queue1
@@ -61,10 +53,6 @@ services:
       - "6379:6379"
     volumes:
       - redis:/data
-    mem_limit: 500000000
-    cpu_count: 1
-    cpu_percent: 10
-    cpus: 0.5
 
 #  elasticsearch:
 #    image: elasticsearch:5
@@ -107,10 +95,9 @@ services:
 #      - elasticsearch1
     env_file:
       - variables.env
-    mem_limit: 520000000
-    cpu_count: 8
-    cpu_percent: 75
-    cpus: 4.0
+	environment:
+	    PRODUCTION: 'false'
+		DEVELOPMENT: 'true'
 
 volumes:
 #  mongo1:
