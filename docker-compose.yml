@@ -95,9 +95,9 @@ services:
 #      - elasticsearch1
     env_file:
       - variables.env
-	environment:
-	    PRODUCTION: 'false'
-		DEVELOPMENT: 'true'
+    environment:
+        PRODUCTION: 'false'
+        DEVELOPMENT: 'true'
 
 volumes:
 #  mongo1:

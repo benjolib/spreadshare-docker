@@ -68,6 +68,6 @@ services:
     cpu_count: 8
     cpu_percent: 75
     cpus: 4.0
-	environment:
-	    PRODUCTION: 'true'
-		DEVELOPMENT: 'false'
+    environment:
+        PRODUCTION: 'true'
+        DEVELOPMENT: 'false'
