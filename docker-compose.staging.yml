@@ -1,0 +1,73 @@
+version: '2.3'
+
+services:
+#  mongo1:
+#    restart: always
+#    image: mongo:3.4
+#    hostname: mongo1
+#    expose:
+#      - "27017"
+#    ports:
+#      - "27017:27017"
+#    volumes:
+#      - mongo1:/data/db
+
+  mysql1:
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+      - ./application/schemas/mysql.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+        - variables.env
+    mem_limit: 4200000000
+    cpu_count: 2
+    cpu_percent: 80
+    cpus: 0.5
+
+  memcached:
+    mem_limit: 500000000
+    cpu_count: 1
+    cpu_percent: 25
+    cpus: 1.0
+
+  #queue:
+  #  container_name: spreadshare-queue1
+  #  restart: always
+  #  image: phalconphp/beanstalkd:1.10
+  #  ports:
+  #    - "11300:11300"
+  #  volumes:
+  #    - beanstalk:/var/lib/beanstalkd
+
+  redis:
+    mem_limit: 500000000
+    cpu_count: 1
+    cpu_percent: 25
+    cpus: 1.0
+
+#  elasticsearch:
+#    image: elasticsearch:5
+#    restart: always
+#    expose:
+#      - "9200"
+#      - "9300"
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+#    env_file:
+#      - variables.env
+#    volumes:
+#      - esdata:/usr/share/elasticsearch/data
+
+  app:
+    ports:
+      - "80:80"
+      - "443:443"
+    mem_limit: 520000000
+    cpu_count: 2
+    cpu_percent: 80
+    cpus: 2.0
+    environment:
+        PRODUCTION: 'true'
+        DEVELOPMENT: 'false'
