@@ -15,7 +15,7 @@ $ git clone --recursive git@bitbucket.org:spreadshare/spreadshare-docker.git
 
 Add spreadshare.docker in your /etc/hosts file as follows:
 ````
-$ 127.0.0.1 spreadshare.docker
+$ 127.0.0.1 dev.spreadshare.co
 ````
 
 ### Create and build all containers
@@ -31,16 +31,25 @@ $ docker-compose up -d
 
 ### Run
 
-Open http://spreadshare.docker:81 or https://spreadshare.docker:444
+Open http://dev.spreadshare.co:81 or https://dev.spreadshare.co:444
 
 We are using ports 81 and 444 to not interfere with any other locally running webserver.
 
 
 ### Additional info
 
-Use 
+Use
 ````
-$ docker-compose build --no-cache
+make reset
 ````
 
-to re-build the environment.
+to re-build the environment id you have the autotools installed.
+
+Do
+````
+docker-compose stop
+docker-compose down
+docker-compose build --no-cache
+docker-compose up -d
+````
+if not.
