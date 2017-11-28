@@ -66,19 +66,18 @@ services:
     cpu_percent: 10
     cpus: 0.5
 
-#  elasticsearch:
-#    image: elasticsearch:5
-#    restart: always
-#    expose:
-#      - "9200"
-#      - "9300"
-#    ports:
-#      - "9200:9200"
-#      - "9300:9300"
-#    env_file:
-#      - variables.env
-#    volumes:
-#      - esdata:/usr/share/elasticsearch/data
+  elasticsearch:
+    container_name: spreadshare-elastic1
+    image: elasticsearch:5
+    restart: always
+    expose:
+      - "9200"
+      - "9300"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    env_file:
+      - variables.env
 
   app:
     build: docker/app
