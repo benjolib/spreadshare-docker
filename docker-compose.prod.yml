@@ -46,19 +46,11 @@ services:
     cpu_percent: 25
     cpus: 1
 
-#  elasticsearch:
-#    image: elasticsearch:5
-#    restart: always
-#    expose:
-#      - "9200"
-#      - "9300"
-#    ports:
-#      - "9200:9200"
-#      - "9300:9300"
-#    env_file:
-#      - variables.env
-#    volumes:
-#      - esdata:/usr/share/elasticsearch/data
+  elasticsearch:
+    mem_limit: 1000000000
+    cpu_count: 2
+    cpu_percent: 25
+    cpus: 1
 
   app:
     ports:
