@@ -10,6 +10,7 @@ COPY bin/*.sh /opt/docker/provision/entrypoint.d/
 
 # Copy init scripts
 COPY init.d/spreadshare-queue /etc/init.d/
+RUN chmod +x /etc/init.d/spreadshare-queue
 RUN update-rc.d spreadshare-queue defaults 91
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
