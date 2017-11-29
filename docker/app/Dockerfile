@@ -8,6 +8,10 @@ ENV PROVISION_CONTEXT "production"
 # Deploy scripts/configurations
 COPY bin/*.sh /opt/docker/provision/entrypoint.d/
 
+# Copy init scripts
+COPY init.d/spreadshare-queue /etc/init.d/
+RUN update-rc.d spreadshare-queue defaults
+
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
 ENV COMPOSER_VERSION 1.5.2

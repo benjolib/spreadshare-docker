@@ -1,0 +1,89 @@
+#! /bin/sh
+ 
+### BEGIN INIT INFO
+# Provides:          spreadshare-queue
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: PHP script daemon for slackbot
+# Description:       PHP script daemon for slackbot
+#                    Installation:
+#                    Copy this file to /etc/init.d/ (no file extension allowed)
+#                    chmod +x this
+#                    sudo update-rc.d <myservice> defaults 91 // because it must start after mysql
+### END INIT INFO
+ 
+NAME=spreadshare-queue
+DESC="PHP Script Deamon"
+ 
+PIDFILE="/var/run/${NAME}.pid"
+LOGFILE="/var/log/${NAME}.log"
+ 
+DAEMON="/usr/bin/php"
+DAEMON_OPTS="/project/application/bin/cli.php Queue"
+ 
+RUN_AS=www-data
+
+START_OPTS="--start --background --chuid ${RUN_AS} --make-pidfile --pidfile ${PIDFILE} --exec ${DAEMON} ${DAEMON_OPTS}"
+STOP_OPTS="--stop --pidfile ${PIDFILE}"
+ 
+. /lib/lsb/init-functions
+test -x $DAEMON || exit 0
+ 
+set -e
+ 
+do_start()
+{
+    log_daemon_msg "Starting ${DESC}" "$NAME"
+    start-stop-daemon $START_OPTS >> $LOGFILE
+    log_end_msg $?
+}
+ 
+do_stop()
+{
+    if pidof $DAEMON > /dev/null 2>&1 ; then
+        log_daemon_msg "Stopping ${DESC}" "$NAME"
+        start-stop-daemon $STOP_OPTS
+    else
+        log_daemon_msg "$NAME is not running."
+    fi
+    log_end_msg $?
+}
+ 
+case "$1" in
+    start)
+        do_start
+        ;;
+    stop)
+        do_stop
+        ;;
+    status)
+        if [ -e $PIDFILE ]; then
+            status_of_proc -p $PIDFILE $DAEMON "$NAME process" && exit 0 || exit $?
+        else
+            log_daemon_msg "$NAME Process is not running"
+            log_end_msg 0
+        fi
+        ;;
+    restart|force-reload)
+        do_stop
+        case "$?" in
+            0|1)
+                do_start
+                ;;
+            *)
+                log_end_msg 1
+                print_error_msg
+                exit 1
+                ;;
+            esac
+        ;;
+    *)
+        N=/etc/init.d/$NAME
+        echo "Usage: $N {start|stop|status|restart|force-reload}" >&2
+        exit 1
+        ;;
+esac
+ 
+exit 0
