@@ -20,10 +20,10 @@ services:
       - ./application/schemas/mysql.sql:/docker-entrypoint-initdb.d/init.sql
     env_file:
         - variables.env
-    mem_limit: 4200000000
-    cpu_count: 2
-    cpu_percent: 50
-    cpus: 0.5
+    mem_limit: 8000000000
+    cpu_count: 4
+    cpu_percent: 75
+    cpus: 4.0
 
   memcached:
     mem_limit: 500000000
@@ -42,9 +42,9 @@ services:
 
   redis:
     mem_limit: 500000000
-    cpu_count: 1
-    cpu_percent: 10
-    cpus: 0.5
+    cpu_count: 2
+    cpu_percent: 25
+    cpus: 1
 
 #  elasticsearch:
 #    image: elasticsearch:5
@@ -64,7 +64,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    mem_limit: 520000000
+    mem_limit: 2000000000
     cpu_count: 8
     cpu_percent: 75
     cpus: 4.0
