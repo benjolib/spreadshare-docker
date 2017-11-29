@@ -37,6 +37,8 @@ help-default help: .title
 	@echo "                   start: Start application"
 	@echo "                   build: Build or rebuild services"
 	@echo "                   reset: Reset all containers, delete all data, rebuild services and restart"
+	@echo "              reset-prod: Same as reset but for production environment""
+	@echo "           reset-staging: Same as reset but for staging environment"
 	@echo "                 php-cli: Run PHP interactively (CLI)"
 	@echo ""
 
@@ -56,6 +58,12 @@ pull:
 up: check
 	docker-compose up -d
 
+up-prod: check
+	docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+up-staging: check
+	docker-compose -f docker-compose.yml -f docker-compose.staging.yml up -d
+
 start: check
 	docker-compose start
 
@@ -66,6 +74,10 @@ status:
 	docker-compose ps
 
 reset: check stop clean build up
+
+reset-prod: check stop clean build up-prod
+
+reset-staging: check stop clean build up-staging
 
 check:
 ifeq ($(wildcard $(VARIABLES_FILE)),)
