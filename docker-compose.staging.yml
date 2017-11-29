@@ -47,7 +47,7 @@ services:
     cpus: 1.0
 
   elasticsearch:
-    mem_limit: 1000000000
+    mem_limit: 4000000000
     cpu_count: 2
     cpu_percent: 25
     cpus: 1
