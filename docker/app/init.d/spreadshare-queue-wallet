@@ -14,7 +14,7 @@
 #                    sudo update-rc.d <myservice> defaults 91 // because it must start after mysql
 ### END INIT INFO
 
-NAME=spreadshare-queue
+NAME=spreadshare-queue-wallet
 DESC="PHP Script Deamon for Wallets"
 
 PIDFILE="/var/run/${NAME}.pid"
