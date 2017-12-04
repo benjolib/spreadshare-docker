@@ -37,7 +37,7 @@ help-default help: .title
 	@echo "                   start: Start application"
 	@echo "                   build: Build or rebuild services"
 	@echo "                   reset: Reset all containers, delete all data, rebuild services and restart"
-	@echo "              reset-prod: Same as reset but for production environment""
+	@echo "              reset-prod: Same as reset but for production environment"
 	@echo "           reset-staging: Same as reset but for staging environment"
 	@echo "                 php-cli: Run PHP interactively (CLI)"
 	@echo ""
