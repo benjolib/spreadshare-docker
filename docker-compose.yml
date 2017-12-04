@@ -24,7 +24,7 @@ services:
     volumes:
       - ./docker/mysql/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
       - ./application/schemas/structure.sql:/docker-entrypoint-initdb.d/01_structure.sql
-      - ./application/schemas/data.sql:/docker-entrypoint-initdb.d/01_data.sql
+      - ./application/schemas/data.sql:/docker-entrypoint-initdb.d/02_data.sql
     env_file:
         - variables.env
 
