@@ -21,7 +21,7 @@ PIDFILE="/var/run/${NAME}.pid"
 LOGFILE="/var/log/${NAME}.log"
 
 DAEMON="/usr/bin/php"
-DAEMON_OPTS="/project/application/bin/cli.php NewQueue --name=touchTable"
+DAEMON_OPTS="/project/application/bin/cli.php NewQueue Table --name=touchTable"
 
 RUN_AS=www-data
 

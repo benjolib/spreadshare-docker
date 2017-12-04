@@ -21,7 +21,7 @@ PIDFILE="/var/run/${NAME}.pid"
 LOGFILE="/var/log/${NAME}.log"
 
 DAEMON="/usr/bin/php"
-DAEMON_OPTS="/project/application/bin/cli.php NewQueue --name=newWallet"
+DAEMON_OPTS="/project/application/bin/cli.php NewQueue Wallet --name=newWallet"
 
 RUN_AS=www-data
 
