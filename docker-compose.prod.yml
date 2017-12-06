@@ -41,13 +41,13 @@ services:
   #    - beanstalk:/var/lib/beanstalkd
 
   redis:
-    mem_limit: 500000000
+    mem_limit: 200000000
     cpu_count: 2
     cpu_percent: 25
     cpus: 1
 
   elasticsearch:
-    mem_limit: 4000000000
+    mem_limit: 5000000000
     cpu_count: 2
     cpu_percent: 25
     cpus: 1
