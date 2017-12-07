@@ -10,12 +10,11 @@ while(!\$connected) {
             'mysql:host=mysql1:3306;dbname=' . getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'),
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
         );
+        \$dbh->query('SELECT * from wallet;');
         \$connected = true;
     }
     catch(PDOException \$ex){
-        error_log("Could not connect to MySQL");
-        error_log(\$ex->getMessage());
-        error_log("Waiting for MySQL Connection.");
+        error_log("Waiting for MySQL to be up and running...");
         sleep(5);
     }
 }
