@@ -25,7 +25,7 @@ rm /tmp/wait_for_mysql.php
 wait 5
 
 echo "Starting Table daemon.."
-/usr/bin/php /project/application/bin/cli.php NewQueue Table --name=touchTable &
+/usr/bin/php /project/application/bin/cli.php NewQueue Table --name=touchTable >> /project/application/system/log/queue-table &
 
 echo "Starting Wallet daemon.."
-/usr/bin/php /project/application/bin/cli.php NewQueue Wallet --name=newWallet &
+/usr/bin/php /project/application/bin/cli.php NewQueue Wallet --name=newWallet >> /project/application/system/log/queue-wallet &
