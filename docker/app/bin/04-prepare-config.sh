@@ -5,6 +5,25 @@ echo "Preparing config.."
 
 cp -f /project/application/app/config/Config.php.dist /project/application/app/config/Config.php
 
+HOST=$(sed 's/[&/\]/\\&/g' <<< "${HOST}")
+AUTH_CALLBACK=$(sed 's/[&/\]/\\&/g' <<< "${AUTH_CALLBACK}")
+WALLET=$(sed 's/[&/\]/\\&/g' <<< "${WALLET}")
+BUILD_ENVIRONMENT=$(sed 's/[&/\]/\\&/g' <<< "${BUILD_ENVIRONMENT}")
+MAILGUN_KEY=$(sed 's/[&/\]/\\&/g' <<< "${MAILGUN_KEY}")
+CRYPT_KEY=$(sed 's/[&/\]/\\&/g' <<< "${CRYPT_KEY}")
+SENTRY_KEY=$(sed 's/[&/\]/\\&/g' <<< "${SENTRY_KEY}")
+SLACK_WEBHOOK=$(sed 's/[&/\]/\\&/g' <<< "${SLACK_WEBHOOK}")
+FILES_SERVICE=$(sed 's/[&/\]/\\&/g' <<< "${FILES_SERVICE}")
+AUTH_DEBUG=$(sed 's/[&/\]/\\&/g' <<< "${AUTH_DEBUG}")
+TWITTER_ID=$(sed 's/[&/\]/\\&/g' <<< "${TWITTER_ID}")
+TWITTER_KEY=$(sed 's/[&/\]/\\&/g' <<< "${TWITTER_KEY}")
+TWITTER_SECRET=$(sed 's/[&/\]/\\&/g' <<< "${TWITTER_SECRET}")
+TWITTER_SECRET=$(sed 's/[&/\]/\\&/g' <<< "${TWITTER_SECRET}")
+GOOGLE_ID=$(sed 's/[&/\]/\\&/g' <<< "${GOOGLE_ID}")
+GOOGLE_SECRET=$(sed 's/[&/\]/\\&/g' <<< "${GOOGLE_SECRET}")
+FACEBOOK_ID=$(sed 's/[&/\]/\\&/g' <<< "${FACEBOOK_ID}")
+FACEBOOK_SECRET=$(sed 's/[&/\]/\\&/g' <<< "${FACEBOOK_SECRET}")
+
 sed -i -e "s/_HOST_/${HOST}/g" /project/application/app/config/Config.php
 sed -i -e "s/_AUTH_CALLBACK_/${AUTH_CALLBACK}/g" /project/application/app/config/Config.php
 sed -i -e "s/_WALLET_/${WALLET}/g" /project/application/app/config/Config.php
