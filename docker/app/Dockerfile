@@ -8,15 +8,6 @@ ENV PROVISION_CONTEXT "production"
 # Deploy scripts/configurations
 COPY bin/*.sh /opt/docker/provision/entrypoint.d/
 
-# Copy init scripts
-COPY init.d/spreadshare-queue-tables /etc/init.d/
-COPY init.d/spreadshare-queue-wallet /etc/init.d/
-RUN chmod +x /etc/init.d/spreadshare-queue-tables /etc/init.d/spreadshare-queue-wallet
-RUN update-rc.d spreadshare-queue-tables defaults 91
-RUN update-rc.d spreadshare-queue-wallet defaults 91
-RUN /etc/init.d/spreadshare-queue-tables start
-RUN /etc/init.d/spreadshare-queue-wallet start
-
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
 ENV COMPOSER_VERSION 1.5.2
