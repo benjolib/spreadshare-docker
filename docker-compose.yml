@@ -98,6 +98,7 @@ services:
       - variables.env
     environment:
         BUILD_ENVIRONMENT: 'development'
+        APPLICATION_ENV: 'development'
         HOST: 'dev.spreadshare.co:81'
         AUTH_CALLBACK: 'http://dev.spreadshare.co:81/login'
         WALLET: 'localhost'
