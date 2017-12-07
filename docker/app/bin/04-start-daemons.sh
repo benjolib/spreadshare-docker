@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# Wait until mysql is started
-echo "Waiting 30 secs.."
-sleep 30
+# Wait until mysql is started and all dumps are imported
+echo "Waiting 180 secs.."
+sleep 180
 
 echo "Starting Table daemon.."
 /usr/bin/php /project/application/bin/cli.php NewQueue Table --name=touchTable &
