@@ -22,7 +22,7 @@ EOF
 php /tmp/wait_for_mysql.php
 rm /tmp/wait_for_mysql.php
 
-wait 5
+sleep 5
 
 echo "Starting Table daemon.."
 /usr/bin/php /project/application/bin/cli.php NewQueue Table --name=touchTable >> /project/application/system/log/queue-table &
