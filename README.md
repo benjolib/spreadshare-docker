@@ -53,3 +53,14 @@ docker-compose build --no-cache
 docker-compose up -d
 ````
 if not.
+
+Make yourself an admin
+````
+Connect to the mysql
+mysql -h 127.0.0.1 -u spreadshare -pspreadshare spreadshare -P3307
+
+Look for your user id (example):
+SELECT * FROM user;
+
+Update to be an admin:
+update user set roles =33 where id =XXXXX;
