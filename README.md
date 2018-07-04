@@ -64,3 +64,4 @@ SELECT * FROM user;
 
 Update to be an admin:
 update user set roles =33 where id =XXXXX;
+````
