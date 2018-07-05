@@ -74,12 +74,12 @@ services:
     container_name: spreadshare-backend1
     restart: always
     hostname: spreadshare
-    working_dir: /project
+    working_dir: /application
     ports:
       - "81:80"
       - "444:443"
     volumes:
-      - .:/project
+      - ./application:/application:cached # https://docs.docker.com/docker-for-mac/osxfs-caching/
       - ./conf/php/cli.ini:/etc/php/7.0/cli/conf.d/100-custom.ini
       - ./conf/php/fpm.ini:/etc/php/7.0/fpm/conf.d/100-custom.ini
       - ./docker/apache2:/etc/apache2/spreadshare
@@ -99,8 +99,8 @@ services:
     environment:
         BUILD_ENVIRONMENT: 'development'
         APPLICATION_ENV: 'development'
-        HOST: 'spreadshare.javisantos.com:81'
-        AUTH_CALLBACK: 'http://spreadshare.javisantos.com:81/login'
+        HOST: 'dev.spreadshare.co:81'
+        AUTH_CALLBACK: 'http://dev.spreadshare.co:81/login'
         WALLET: 'localhost'
         MAILGUN_KEY: 'key-611a7bf686cb890b8db38ad9ce1a5bbb'
         CRYPT_KEY: 'iuh213iu78ads898213euwioadjbxhjy-jkldHJKDJ_ksahdKASGDS$AKDH32L4EJLDSACKÖÄASPOE24'

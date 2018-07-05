@@ -4,5 +4,5 @@
 echo "Updating composer dependencies (for $PROVISION_CONTEXT).."
 
 if [ $PROVISION_CONTEXT != "development" ]; then
-	composer --working-dir=/project/application/ install --no-dev
+	composer --working-dir=/application/ install --no-dev
 fi
