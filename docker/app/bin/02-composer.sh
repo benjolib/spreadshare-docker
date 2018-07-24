@@ -4,5 +4,7 @@
 echo "Updating composer dependencies (for $PROVISION_CONTEXT).."
 
 if [ $PROVISION_CONTEXT != "development" ]; then
-	composer --working-dir=/application/ install --no-dev
+	composer --working-dir=/application/ install --no-dev --classmap-authoritative
+else
+    composer --working-dir=/application/ install --classmap-authoritative
 fi

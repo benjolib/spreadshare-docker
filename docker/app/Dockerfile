@@ -27,11 +27,7 @@ RUN curl -s -f -L -o /tmp/installer.php https://raw.githubusercontent.com/compos
  && composer --ansi --version --no-interaction \
  && rm -rf /tmp/* /tmp/.htaccess
 
-RUN mkdir -p /vendor \
-    && composer --working-dir=/vendor require phalcon/devtools \
-    && ln -s /vendor/vendor/phalcon/devtools/phalcon.php /usr/local/bin/phalcon \
-    && chmod ugo+x /usr/local/bin/phalcon \
-    && chmod +x /opt/docker/provision/entrypoint.d/*.sh
+RUN chmod +x /opt/docker/provision/entrypoint.d/*.sh
 
 RUN mkdir -p  /etc/apache2/spreadshare
 
