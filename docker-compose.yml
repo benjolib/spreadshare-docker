@@ -28,14 +28,6 @@ services:
     env_file:
         - variables.env
 
-  memcached:
-    container_name: spreadshare-memcached1
-    restart: always
-    hostname: memcached
-    image: memcached:1.5.2
-    ports:
-      - "11211:11211"
-
   #queue:
   #  container_name: spreadshare-queue1
   #  restart: always
@@ -55,20 +47,6 @@ services:
     volumes:
       - redis:/data
 
-  elasticsearch:
-    container_name: spreadshare-elastic1
-    image: elasticsearch:5
-    restart: always
-    expose:
-      - "9200"
-      - "9300"
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    env_file:
-      - variables.env
-    mem_limit: 2000000000
-
   app:
     build: docker/app
     container_name: spreadshare-backend1
@@ -85,13 +63,13 @@ services:
       - ./docker/apache2:/etc/apache2/spreadshare
     links:
       - "redis:redis"
-      - "memcached:memcached"
+#      - "memcached:memcached"
 #      - "mongo1:mongo1"
 #      - "elasticsearch:elasticsearch"
     depends_on:
       - mysql1
       - redis
-      - memcached
+#      - memcached
 #      - queue1
 #      - elasticsearch1
     env_file:
