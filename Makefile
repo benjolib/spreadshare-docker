@@ -68,7 +68,7 @@ start: check
 	docker-compose start
 
 stop:
-	docker-compose stop
+	docker-compose stop 
 
 status:
 	docker-compose ps
@@ -101,7 +101,7 @@ root:
 	docker exec -it -u root $$(docker-compose ps -q app) /bin/bash
 
 clean: stop
-	docker-compose down
+	docker-compose down --remove-orphans
 
 %:
 	@:
