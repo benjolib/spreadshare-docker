@@ -46,11 +46,8 @@ build: check
 	docker-compose build --no-cache
 
 pull:
-	docker pull mongo:3.2
 	docker pull mysql:5.7
-	docker pull memcached:1.5.2
 	docker pull redis:4.0
-	docker pull elasticsearch:5
 	docker pull jeroenpeeters/docker-ssh:latest
 	docker pull phalconphp/beanstalkd:1.10
 	docker pull phalconphp/php-apache:ubuntu-16.04

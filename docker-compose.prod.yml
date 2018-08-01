@@ -1,17 +1,6 @@
 version: '2.3'
 
 services:
-#  mongo1:
-#    restart: always
-#    image: mongo:3.4
-#    hostname: mongo1
-#    expose:
-#      - "27017"
-#    ports:
-#      - "27017:27017"
-#    volumes:
-#      - mongo1:/data/db
-
   mysql1:
     ports:
       - "3306:3306"
@@ -24,15 +13,6 @@ services:
     cpu_count: 4
     cpu_percent: 90
     cpus: 2.0
-
-  #queue:
-  #  container_name: spreadshare-queue1
-  #  restart: always
-  #  image: phalconphp/beanstalkd:1.10
-  #  ports:
-  #    - "11300:11300"
-  #  volumes:
-  #    - beanstalk:/var/lib/beanstalkd
 
   redis:
     mem_limit: 200000000
@@ -67,3 +47,5 @@ services:
         GOOGLE_SECRET: 'd59PePUgDSCGgB_JuxGerScB'
         FACEBOOK_ID: '153117502101937'
         FACEBOOK_SECRET: 'f1c03b95bfc5c671085147b31b0474ef'
+        MAIL_DISPATCHER_URL: 'https://rg3k934ed5.execute-api.eu-central-1.amazonaws.com/prod'
+        MAIL_DISPATCHER_API_KEY: 'ItgiwKjkDM9OxQ3Vyz0dC8uPwXMc9wJM3WvBsRyM'
