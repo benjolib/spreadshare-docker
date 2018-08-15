@@ -32,7 +32,7 @@ services:
       BUILD_ENVIRONMENT: 'production'
       APPLICATION_ENV: 'production'
       HOST: 'spreadshare.co'
-      AUTH_CALLBACK: 'http://spreadshare.co/login'
+      AUTH_CALLBACK: 'https://spreadshare.co/login'
       WALLET: 'http://ec2-18-217-109-204.us-east-2.compute.amazonaws.com/'
       MAILGUN_KEY: 'key-611a7bf686cb890b8db38ad9ce1a5bbb'
       CRYPT_KEY: 'iuh213iu78ads898213euwioadjbxhjy-jkldHJKDJ_ksahdKASGDSAKDH32L4EJLDSACKÖÄASPOE24'
